@@ -1,29 +1,46 @@
-# Driver Drowsiness Detection System
+# Real-Time Driver Fatigue Detection System
 
-This repository contains code for a Driver Drowsiness Detection System that uses computer vision techniques and deep learning models to detect drowsiness in drivers.
+This project is a real-time Driver Drowsiness Detection System built using Computer Vision and Deep Learning. It monitors a driver’s face through a video feed and classifies alertness to help prevent accidents caused by fatigue.
 
-## System Flow
+## System Architecture
 
-1. **Dash Cam Video Capture:** The system captures the driver's video feed using a dash cam.
+1. Video Input Capture
+The system captures live video from a dashcam or webcam installed in the vehicle.
 
-2. **Video to Frames:** OpenCV is used to extract frames from the video stream. Each frame is treated as an individual image.
+2. Frame Extraction
+Using OpenCV, the video stream is broken into individual frames for processing, where each frame is treated as a standalone image.
 
-3. **Face Detection:** The extracted frames are processed through a pre-trained ResNet .caffemodel for face detection using OpenCV. This detects and localizes faces in the frames.
+3. Face Detection
+Each frame is passed through a pre-trained ResNet-based Caffe model (.caffemodel) using OpenCV to detect and localize the driver’s face.
 
-4. **Cropped Faces:** The faces detected in the frames are cropped and isolated as individual face images.
+4. Face Region Cropping
+The detected face region is extracted and cropped to remove irrelevant background information and focus only on facial features.
 
-5. **Drowsiness Classification:** The cropped face images are passed through a VGG16-based image classification model. This model was trained on a diverse dataset containing approximately 9000 images with drowsy and non-drowsy labels. The model predicts whether the driver's face is showing signs of drowsiness or not.
+5. Drowsiness Classification
+The cropped face images are fed into a VGG16-based deep learning model trained on approximately 9,000 labeled images.
+The model classifies the driver as:
 
-6. **Performance Enhancement:** Initially, the VGG16 model achieved an accuracy of 85%. However, by using cropped face images, the performance was significantly improved, achieving almost 100% accuracy.
+Active (Alert)
+Fatigued (Drowsy)
 
-7. **Real-time Processing:** The entire system operates in real-time, with a processing speed of approximately 17 frames per second on a 20 frames per second video feed when running on a CPU.
+6. Performance Optimization
+The initial model achieved approximately 85% accuracy.
+After introducing face cropping, performance improved significantly due to reduced background noise and better feature extraction.
+
+7. Real-Time Processing
+The system runs in real time, achieving approximately 17 FPS on CPU while processing a ~20 FPS video stream.
 
 ## Dataset
 
-The VGG16-based image classification model was trained on a multiracial dataset sourced from Kaggle. The dataset contains around 9000 images, each labeled as Active and Fatigue Subjects.
+The model was trained on a multiracial driver fatigue dataset sourced from Kaggle.
 
-[Link to Dataset](https://www.kaggle.com/datasets/rakibuleceruet/drowsiness-prediction-dataset)
+📦 Total Images: ~9000
+🏷 Labels: Active / Fatigue Subjects
 
-## VGG16-based image classification model
+Dataset Link:
+https://www.kaggle.com/datasets/rakibuleceruet/drowsiness-prediction-dataset
 
-[Link to Model](https://drive.google.com/file/d/1zyOEzHi1LVrZCeqVdtF9yn7ARYQrtsOt/view?usp=drive_link)
+## VGG16-based image classification model:
+
+Link to Model: 
+https://drive.google.com/file/d/1zyOEzHi1LVrZCeqVdtF9yn7ARYQrtsOt/view?usp=drive_link
