@@ -4,19 +4,24 @@ This project is a real-time Driver Drowsiness Detection System built using Compu
 
 ## System Architecture
 
-1. Video Input Capture
+1. Video Input Capture:
+
 The system captures live video from a dashcam or webcam installed in the vehicle.
 
-2. Frame Extraction
+2. Frame Extraction:
+
 Using OpenCV, the video stream is broken into individual frames for processing, where each frame is treated as a standalone image.
 
 3. Face Detection
+
 Each frame is passed through a pre-trained ResNet-based Caffe model (.caffemodel) using OpenCV to detect and localize the driver’s face.
 
 4. Face Region Cropping
+
 The detected face region is extracted and cropped to remove irrelevant background information and focus only on facial features.
 
 5. Drowsiness Classification
+
 The cropped face images are fed into a VGG16-based deep learning model trained on approximately 9,000 labeled images.
 The model classifies the driver as:
 
@@ -24,10 +29,12 @@ Active (Alert)
 Fatigued (Drowsy)
 
 6. Performance Optimization
+
 The initial model achieved approximately 85% accuracy.
 After introducing face cropping, performance improved significantly due to reduced background noise and better feature extraction.
 
 7. Real-Time Processing
+
 The system runs in real time, achieving approximately 17 FPS on CPU while processing a ~20 FPS video stream.
 
 ## Dataset
